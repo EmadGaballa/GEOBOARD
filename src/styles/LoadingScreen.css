@@ -1,0 +1,229 @@
+/* ======================================================
+   LOADING SCREEN
+   ====================================================== */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(6, 182, 212, 0.08), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.08), transparent 40%),
+    rgba(3, 7, 18, 0.96);
+
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* ======================================================
+   BACKGROUND EFFECTS
+   ====================================================== */
+
+.loading-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.loading-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+}
+
+.loading-orb-cyan {
+  width: 380px;
+  height: 380px;
+
+  top: -140px;
+  left: -140px;
+
+  background: rgba(6, 182, 212, 0.4);
+}
+
+.loading-orb-purple {
+  width: 420px;
+  height: 420px;
+
+  bottom: -180px;
+  right: -180px;
+
+  background: rgba(168, 85, 247, 0.4);
+}
+
+.loading-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+}
+
+/* ======================================================
+   SPINNER
+   ====================================================== */
+
+.loading-spinner {
+  position: relative;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(6, 182, 212, 0.15),
+      rgba(168, 85, 247, 0.15)
+    );
+
+  box-shadow:
+    0 0 40px rgba(6, 182, 212, 0.2),
+    0 0 80px rgba(168, 85, 247, 0.15);
+}
+
+.spinner-inner {
+  width: 68px;
+  height: 68px;
+
+  border-radius: 50%;
+
+  border: 4px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #22d3ee;
+  border-right-color: #a855f7;
+
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.04);
+}
+
+/* ======================================================
+   TEXT
+   ====================================================== */
+
+.loading-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+}
+
+.loading-title {
+  margin-bottom: 10px;
+
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+
+  background: linear-gradient(
+    90deg,
+    #22d3ee,
+    #a855f7,
+    #ec4899
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loading-message {
+  color: rgba(255,255,255,0.68);
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  letter-spacing: 0.02em;
+}
+
+/* ======================================================
+   PROGRESS BAR
+   ====================================================== */
+
+.loading-progress {
+  position: relative;
+
+  width: 180px;
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.06);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.04);
+}
+
+.loading-progress-bar {
+  width: 50%;
+  height: 100%;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #22d3ee,
+      #a855f7,
+      transparent
+    );
+
+  filter: blur(0.3px);
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 768px) {
+  .loading-spinner {
+    width: 76px;
+    height: 76px;
+  }
+
+  .spinner-inner {
+    width: 56px;
+    height: 56px;
+  }
+
+  .loading-title {
+    font-size: 2rem;
+  }
+
+  .loading-message {
+    font-size: 0.92rem;
+  }
+
+  .loading-progress {
+    width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner,
+  .loading-progress-bar {
+    animation: none !important;
+  }
+}

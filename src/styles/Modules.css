@@ -1,0 +1,177 @@
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+.modules-page {
+  min-height: 100vh;
+  padding: 3rem;
+  background: radial-gradient(circle at top, #0b1220, #05070f);
+  color: #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ambient glow layer */
+.modules-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(168,85,247,0.08), transparent 45%);
+  pointer-events: none;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* =========================
+   MODULE CARD
+========================= */
+
+.module-card {
+  position: relative;
+  padding: 1.8rem;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+/* hover energy */
+.module-card:hover {
+  border-color: rgba(0,255,255,0.25);
+  box-shadow: 0 0 40px rgba(0,255,255,0.08);
+}
+
+/* glow orb */
+.module-glow {
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle, rgba(0,255,255,0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.module-card:hover .module-glow {
+  opacity: 1;
+}
+
+/* =========================
+   ICON + TEXT
+========================= */
+
+.module-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.module-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.module-desc {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.module-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.module-status {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0,255,255,0.1);
+  color: #22d3ee;
+}
+
+.module-arrow {
+  color: #22d3ee;
+  transition: transform 0.3s ease;
+}
+
+.module-card:hover .module-arrow {
+  transform: translateX(5px);
+}
+
+/* =========================
+   COLOR VARIANTS
+========================= */
+
+.module-card.cyan { border-left: 3px solid #22d3ee; }
+.module-card.purple { border-left: 3px solid #a855f7; }
+.module-card.pink { border-left: 3px solid #ec4899; }
+.module-card.green { border-left: 3px solid #22c55e; }
+
+/* =========================
+   ROADMAP
+========================= */
+
+.roadmap {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+}
+
+.roadmap h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.roadmap-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.roadmap-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #22d3ee;
+  margin-top: 6px;
+  box-shadow: 0 0 10px #22d3ee;
+}
+
+.roadmap-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.roadmap-tags span {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: #cbd5e1;
+}

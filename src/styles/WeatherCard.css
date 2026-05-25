@@ -1,0 +1,193 @@
+/* ======================================================
+   WEATHER CARD
+   ====================================================== */
+
+.weather-card {
+  background: var(--card);
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.weather-card:hover {
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.35);
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.weather-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+/* ======================================================
+   TEXT
+   ====================================================== */
+
+.weather-label {
+  color: #9ca3af;
+
+  font-size: 13px;
+
+  margin-bottom: 8px;
+}
+
+.weather-temperature {
+  font-size: 56px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      #22d3ee,
+      #60a5fa
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 12px;
+}
+
+.weather-condition {
+  color: #d1d5db;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+/* ======================================================
+   ICON
+   ====================================================== */
+
+.weather-icon {
+  font-size: 64px;
+}
+
+/* ======================================================
+   PRIMARY GRID
+   ====================================================== */
+
+.weather-stats-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 16px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid rgba(255,255,255,0.08);
+}
+
+/* ======================================================
+   SECONDARY GRID
+   ====================================================== */
+
+.weather-secondary-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-top: 18px;
+  padding-top: 18px;
+
+  border-top:
+    1px solid rgba(255,255,255,0.08);
+}
+
+/* ======================================================
+   STATS
+   ====================================================== */
+
+.weather-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-stat-label {
+  color: #6b7280;
+
+  font-size: 12px;
+
+  margin-bottom: 6px;
+}
+
+.weather-stat-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.weather-small-value {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ======================================================
+   COLORS
+   ====================================================== */
+
+.weather-cyan {
+  color: #67e8f9;
+}
+
+.weather-purple {
+  color: #c084fc;
+}
+
+.weather-pink {
+  color: #f9a8d4;
+}
+
+.weather-green {
+  color: #86efac;
+}
+
+.weather-orange {
+  color: #fdba74;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 640px) {
+
+  .weather-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .weather-temperature {
+    font-size: 42px;
+  }
+
+  .weather-stats-grid,
+  .weather-secondary-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

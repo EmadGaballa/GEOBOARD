@@ -1,0 +1,251 @@
+/* ======================================================
+   DESIGN SYSTEM TOKENS
+   ====================================================== */
+:root {
+  --layout-gap-xs: 12px;
+  --layout-gap-sm: 16px;
+  --layout-gap-md: 24px;
+  --layout-gap-lg: 32px;
+  --layout-gap-xl: 48px;
+
+  --grid-col-min-default: 320px;
+  --grid-col-min-compact: 260px;
+  --grid-col-min-wide: 420px;
+
+  --layout-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.4s;
+}
+
+/* ======================================================
+   GLOBAL RESET (IMPORTANT FIX)
+   ====================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #030712;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ======================================================
+   MAIN APP LAYOUT FIX (THIS FIXES YOUR "ROW ONLY" ISSUE)
+   ====================================================== */
+
+.app,
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page wrapper must NOT collapse */
+.page,
+.home-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ======================================================
+   HERO FIX
+   ====================================================== */
+.hero-section {
+  margin-bottom: 32px;
+  padding: 48px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+}
+
+/* ======================================================
+   GRID SYSTEM (THIS IS THE IMPORTANT PART)
+   ====================================================== */
+
+/* AUTO GRID (MAIN FIX FOR ROW PROBLEM) */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-col-min-default), 1fr));
+  gap: var(--layout-gap-md);
+  align-items: stretch;
+}
+
+/* RESPONSIVE GRID */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--layout-gap-md);
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ======================================================
+   BENTO GRID (CINEMATIC DASHBOARD STYLE)
+   ====================================================== */
+
+.grid-bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--layout-gap-md);
+}
+
+@media (min-width: 768px) {
+  .grid-bento {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-bento {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Bento spans */
+.bento-span-2 {
+  grid-column: span 2;
+}
+
+.bento-span-3 {
+  grid-column: span 3;
+}
+
+/* ======================================================
+   CARD SYSTEM (CRITICAL FOR VISUAL STRUCTURE)
+   ====================================================== */
+
+.card,
+.card-hover,
+.card-interactive {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
+  transition: transform var(--transition) var(--layout-ease),
+              background var(--transition) var(--layout-ease),
+              box-shadow var(--transition) var(--layout-ease);
+}
+
+.card-hover:hover,
+.card-interactive:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* ======================================================
+   BUTTONS (YOU LOST THESE WHEN REMOVING TAILWIND)
+   ====================================================== */
+
+.btn-primary {
+  background: linear-gradient(135deg, #06b6d4, #7c3aed);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+/* ======================================================
+   INPUTS (YOU LOST THESE TOO)
+   ====================================================== */
+
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #06b6d4;
+}
+
+/* ======================================================
+   BADGES
+   ====================================================== */
+
+.badge-cyan {
+  background: rgba(6,182,212,0.15);
+  color: #67e8f9;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge-purple {
+  background: rgba(124,58,237,0.15);
+  color: #c4b5fd;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* ======================================================
+   HOME LAYOUT FIX (THIS FIXES "ALL IN ROWS")
+   ====================================================== */
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* ======================================================
+   ORBS BACKGROUND
+   ====================================================== */
+
+.bg-orb {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  filter: blur(120px);
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.orb-1 {
+  background: #7c3aed;
+  top: -200px;
+  left: -200px;
+}
+
+.orb-2 {
+  background: #06b6d4;
+  bottom: -200px;
+  right: -200px;
+}

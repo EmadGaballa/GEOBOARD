@@ -1,0 +1,23 @@
+/* ======================================================
+   RESPONSIVE UTILITIES
+   ====================================================== */
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    @apply hidden;
+  }
+  
+  .show-on-mobile {
+    @apply block;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-on-desktop {
+    @apply hidden;
+  }
+  
+  .show-on-desktop {
+    @apply block;
+  }
+}

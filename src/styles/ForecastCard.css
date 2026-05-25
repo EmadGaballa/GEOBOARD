@@ -1,0 +1,157 @@
+/* ======================================================
+   FORECAST CARD
+   ====================================================== */
+
+.forecast-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.35);
+}
+
+/* ======================================================
+   TITLE
+   ====================================================== */
+
+.forecast-title {
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #67e8f9;
+
+  margin-bottom: 24px;
+}
+
+/* ======================================================
+   FORECAST LIST
+   ====================================================== */
+
+.forecast-list,
+.forecast-loading-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ======================================================
+   FORECAST ITEM
+   ====================================================== */
+
+.forecast-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.forecast-item:hover {
+  background:
+    rgba(255,255,255,0.07);
+
+  transform: translateX(4px);
+}
+
+/* ======================================================
+   LEFT SIDE
+   ====================================================== */
+
+.forecast-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  flex: 1;
+}
+
+.forecast-icon {
+  font-size: 28px;
+}
+
+.forecast-day {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.forecast-condition {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ======================================================
+   RIGHT SIDE
+   ====================================================== */
+
+.forecast-right {
+  text-align: right;
+}
+
+.forecast-temp {
+  font-size: 18px;
+  font-weight: 700;
+  color: #67e8f9;
+}
+
+.forecast-humidity {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ======================================================
+   LOADING STATE
+   ====================================================== */
+
+.forecast-loading-item {
+  height: 48px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  animation: pulse 1.5s infinite;
+}
+
+/* ======================================================
+   ANIMATIONS
+   ====================================================== */
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}

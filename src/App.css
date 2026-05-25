@@ -1,0 +1,82 @@
+/* =========================
+   BASE RESET (CINEMATIC CORE)
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background: #030712;
+  color: white;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  overflow-x: hidden;
+
+  /* IMPORTANT: prevents weird flex/grid collapse on mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   ROOT APP CONTAINER
+========================= */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  /* CRITICAL: fixes layout overflow + scroll bugs */
+  overflow: hidden;
+}
+
+/* =========================
+   GLOBAL LAYOUT SAFETY NET
+   (THIS FIXES “ALL ROWS ONLY” ISSUES INDIRECTLY)
+========================= */
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* prevents flex/grid children from breaking layouts */
+* {
+  min-width: 0;
+}
+
+/* =========================
+   SCROLL SYSTEM (IMPORTANT FOR DASHBOARD APPS)
+========================= */
+
+body {
+  overflow-y: auto;
+}
+
+/* smooth scroll for cinematic feel */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   OPTIONAL: GLOBAL SELECTION STYLE
+========================= */
+
+::selection {
+  background: rgba(6, 182, 212, 0.25);
+  color: white;
+}

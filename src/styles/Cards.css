@@ -1,0 +1,140 @@
+/* ======================================================
+   CINEMATIC HYPER-RESPONSIVE CARD ARCHITECTURE
+   ====================================================== */
+
+:root {
+  /* Surface & Border Colors (Mapped from Tailwind Slate) */
+  --card-bg: rgba(15, 23, 42, 0.25);
+  --card-bg-hover: rgba(15, 23, 42, 0.40);
+  --card-bg-interactive: rgba(15, 23, 42, 0.45);
+  --card-bg-active: rgba(2, 6, 23, 0.80);
+  
+  --card-border: rgba(30, 41, 59, 0.60);
+  --card-border-hover-cyan: rgba(6, 182, 212, 0.30);
+  --card-border-hover-indigo: rgba(99, 102, 241, 0.40);
+  --card-border-active-cyan: rgba(6, 182, 212, 0.50);
+  
+  /* Text Colors */
+  --card-text: #f1f5f9;
+  --card-text-hover: #ffffff;
+  
+  /* Glow Colors */
+  --glow-cyan: rgba(6, 182, 212, 0.15);
+  --glow-indigo: rgba(99, 102, 241, 0.15);
+  
+  /* Motion Curves */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 1. The Core Modern Sci-Fi Glass Foundation */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--card-text);
+  
+  /* Fluid responsive padding: scales perfectly from 20px (mobile) to 32px (desktop) */
+  padding: clamp(1.25rem, 1rem + 1.25vw, 2rem);
+  
+  /* Glassmorphism blur */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  
+  /* Dual-Layer Shadow Architecture:
+     Layer 1: Inner white alpha stamp creates a razor-sharp premium physical bevel edge.
+     Layer 2: Ambient occlusion shadow anchors the card into the dark background interface.
+  */
+  box-shadow: 
+    inset 0 1px 0px 0px rgba(255, 255, 255, 0.05),
+    0 10px 40px -10px rgba(0, 0, 0, 0.5);
+              
+  /* Premium high-end motion acceleration curve */
+  transition: all 0.5s var(--ease-cinematic);
+  will-change: transform, box-shadow, border-color, background-color;
+}
+
+/* Optional: Subtle inner noise/grain for ultra-realism */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 2. Floating Kinetic Hover Variant */
+.card-hover {
+  /* Inherits standard .card implicitly if used together in HTML (e.g. class="card card-hover"), 
+     but adding a safeguard baseline just in case */
+}
+
+.card-hover:hover {
+  background-color: var(--card-bg-hover);
+  border-color: var(--card-border-hover-cyan);
+  color: var(--card-text-hover);
+  
+  /* Smooth float-up vector with microscopic scale magnification */
+  transform: translateY(-6px) scale(1.005);
+  
+  /* Adds a subtle neon back-wall cyan wash without overpowering content text */
+  box-shadow: 
+    inset 0 1px 0px 0px rgba(255, 255, 255, 0.08),
+    0 25px 50px -15px rgba(0, 0, 0, 0.7),
+    0 0 40px -15px var(--glow-cyan);
+}
+
+/* 3. Immersive Clickable & Micro-Interaction Variant */
+.card-interactive {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card-interactive:hover {
+  background-color: var(--card-bg-interactive);
+  border-color: var(--card-border-hover-indigo);
+  transform: translateY(-4px);
+  
+  /* Deep interactive indigo shadow projection */
+  box-shadow: 
+    inset 0 1px 0px 0px rgba(255, 255, 255, 0.08),
+    0 30px 60px -15px rgba(0, 0, 0, 0.75),
+    0 0 50px -10px var(--glow-indigo);
+}
+
+/* Physical compression click-state response */
+.card-interactive:active {
+  background-color: var(--card-bg-active);
+  border-color: var(--card-border-active-cyan);
+  color: var(--card-text-hover);
+  
+  /* Simulates a physical tactile button depression */
+  transform: translateY(-1px) scale(0.985);
+  
+  box-shadow: 
+    inset 0 1px 0px 0px rgba(255, 255, 255, 0.01),
+    0 4px 12px rgba(0, 0, 0, 0.6);
+    
+  transition: all 0.12s var(--ease-spring);
+}
+
+/* ======================================================
+   CINEMA LAYOUT MATRIX UTILITIES
+   ====================================================== */
+
+.cinema-dashboard-grid {
+  display: grid;
+  align-items: start;
+  width: 100%;
+  
+  /* Fluid responsive gap: dynamically scales from 24px (mobile) to 48px (desktop) */
+  gap: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  
+  /* Fluid responsive margins above and below global layout sections */
+  margin-top: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  margin-bottom: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+}

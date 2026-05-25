@@ -1,0 +1,1001 @@
+/* ============================================================
+   HOME.CSS — CINEMATIC COMMAND CENTER
+   Aesthetic: Mission control · Cold precision · Living dashboard
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,200&display=swap');
+
+/* ── Root tokens ─────────────────────────────────────────── */
+:root {
+  --void:           #04050a;
+  --surface-0:      #080a10;
+  --surface-1:      #0d1018;
+  --surface-2:      #121520;
+  --surface-3:      #181c28;
+
+  --border-ghost:   rgba(255, 255, 255, 0.04);
+  --border-dim:     rgba(255, 255, 255, 0.07);
+  --border-mid:     rgba(255, 255, 255, 0.11);
+  --border-bright:  rgba(255, 255, 255, 0.18);
+
+  --ink-1:          #f0f2f8;
+  --ink-2:          rgba(200, 206, 224, 0.60);
+  --ink-3:          rgba(160, 167, 192, 0.38);
+
+  --cyan:           #00d4ff;
+  --cyan-dim:       rgba(0, 212, 255, 0.10);
+  --cyan-glow:      rgba(0, 212, 255, 0.22);
+  --cyan-border:    rgba(0, 212, 255, 0.25);
+
+  --amber:          #f5a623;
+  --amber-dim:      rgba(245, 166, 35, 0.10);
+  --amber-border:   rgba(245, 166, 35, 0.25);
+
+  --green:          #39d98a;
+  --green-dim:      rgba(57, 217, 138, 0.10);
+  --green-border:   rgba(57, 217, 138, 0.22);
+
+  --red:            #ff4d4d;
+  --red-dim:        rgba(255, 77, 77, 0.10);
+
+  --font-display:   'Syne', sans-serif;
+  --font-mono:      'DM Mono', monospace;
+  --font-serif:     'Fraunces', Georgia, serif;
+
+  --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:        cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ── Page shell ──────────────────────────────────────────── */
+.home-page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--ink-1);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+/* Scanline texture */
+.home-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.012) 2px,
+    rgba(255, 255, 255, 0.012) 3px
+  );
+  pointer-events: none;
+}
+
+/* ── Ambient orbs ────────────────────────────────────────── */
+.home-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.home-orb--cyan {
+  width: 60vw;
+  height: 60vw;
+  top: -20%;
+  left: -15%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.07), transparent 65%);
+  animation: orb-drift-1 22s ease-in-out infinite;
+}
+
+.home-orb--amber {
+  width: 50vw;
+  height: 50vw;
+  bottom: -10%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.06), transparent 65%);
+  animation: orb-drift-2 28s ease-in-out infinite;
+}
+
+.home-orb--green {
+  width: 35vw;
+  height: 35vw;
+  top: 40%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(57, 217, 138, 0.045), transparent 65%);
+  animation: orb-drift-3 18s ease-in-out infinite;
+}
+
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0, 0)   scale(1); }
+  33%       { transform: translate(4%, 6%) scale(1.08); }
+  66%       { transform: translate(-3%, -4%) scale(0.94); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0, 0)    scale(1); }
+  40%       { transform: translate(-5%, -5%) scale(1.10); }
+  70%       { transform: translate(3%, 4%)  scale(0.92); }
+}
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0, 0)   scale(1); }
+  50%       { transform: translate(-4%, 6%) scale(1.12); }
+}
+
+/* ── Inner wrapper ───────────────────────────────────────── */
+.home-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ── Top header row ──────────────────────────────────────── */
+.home-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+/* System status bar */
+.home-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.home-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border: 1px solid var(--border-dim);
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+.home-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.home-status-dot--live {
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: dot-pulse 2s ease infinite;
+}
+
+.home-status-dot--warn {
+  background: var(--amber);
+}
+
+.home-status-dot--off {
+  background: var(--ink-3);
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--green); }
+  50%       { opacity: 0.5; box-shadow: 0 0 2px var(--green); }
+}
+
+/* ── Greeting block ──────────────────────────────────────── */
+.home-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.home-greeting-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+}
+
+.home-greeting-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink-1);
+  line-height: 1;
+  margin: 0;
+}
+
+.home-greeting-sub {
+  font-size: 0.7rem;
+  color: var(--ink-2);
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  margin-top: 0.15rem;
+}
+
+/* ── Clock ───────────────────────────────────────────────── */
+.home-clock {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.home-clock-time {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-1);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.home-clock-date {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 0.3rem;
+}
+
+.home-clock-tz {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  opacity: 0.7;
+  margin-top: 0.1rem;
+}
+
+/* ── Section label ───────────────────────────────────────── */
+.home-section-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.home-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-dim);
+}
+
+/* ── Bento grid ──────────────────────────────────────────── */
+.home-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 1px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
+}
+
+/* Bento cell base */
+.bento-cell {
+  background: var(--surface-1);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.bento-cell:hover {
+  background: var(--surface-2);
+}
+
+/* Subtle top-edge highlight on every cell */
+.bento-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
+}
+
+/* Cell sizing */
+.bento-cell--weather      { grid-column: span 5; grid-row: span 2; }
+.bento-cell--clock-large  { grid-column: span 4; grid-row: span 2; }
+.bento-cell--location     { grid-column: span 3; grid-row: span 2; }
+.bento-cell--uv           { grid-column: span 3; }
+.bento-cell--wind         { grid-column: span 3; }
+.bento-cell--humidity     { grid-column: span 3; }
+.bento-cell--pressure     { grid-column: span 3; }
+.bento-cell--currency     { grid-column: span 4; grid-row: span 2; }
+.bento-cell--news-lead    { grid-column: span 8; grid-row: span 3; }
+.bento-cell--news-side    { grid-column: span 4; grid-row: span 3; }
+.bento-cell--map          { grid-column: span 8; grid-row: span 2; }
+.bento-cell--activity     { grid-column: span 8; }
+
+/* ── Cell inner padding ──────────────────────────────────── */
+.bento-pad {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-pad--sm { padding: 1.1rem 1.25rem; }
+.bento-pad--lg { padding: 2rem; }
+
+/* ── Cell label (top-left eyebrow) ──────────────────────── */
+.bento-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bento-label-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ── Weather cell ────────────────────────────────────────── */
+.bento-weather-temp {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.bento-weather-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.bento-weather-condition {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-2);
+  margin: 0.35rem 0 1.25rem;
+  font-weight: 300;
+}
+
+.bento-weather-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.bento-weather-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.bento-weather-stat-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.bento-weather-stat-val {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Big clock cell ──────────────────────────────────────── */
+.bento-bigclock-time {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.bento-bigclock-date {
+  font-size: 0.65rem;
+  color: var(--ink-2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bento-bigclock-tz {
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 0.14em;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+/* ── Metric cell ─────────────────────────────────────────── */
+.bento-metric-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+  transition: color 0.3s ease;
+}
+
+.bento-metric-value--cyan   { color: var(--cyan); }
+.bento-metric-value--amber  { color: var(--amber); }
+.bento-metric-value--green  { color: var(--green); }
+.bento-metric-value--red    { color: var(--red); }
+
+.bento-metric-unit {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-left: 3px;
+}
+
+.bento-metric-sub {
+  font-size: 0.6rem;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+}
+
+.bento-metric-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--border-dim);
+  border-radius: 1px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.bento-metric-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 1.2s var(--ease-expo);
+}
+
+/* ── Location cell ───────────────────────────────────────── */
+.bento-location-city {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+}
+
+.bento-location-country {
+  font-size: 0.7rem;
+  color: var(--ink-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.bento-location-coords {
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 0.12em;
+  margin-top: 0.35rem;
+  opacity: 0.8;
+}
+
+.bento-cell--map {
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.bento-cell--map:hover {
+  transform: scale(1.01);
+}
+
+.bento-cell--map:active {
+  transform: scale(0.99);
+}
+
+/* ── Currency cell ───────────────────────────────────────── */
+.bento-currency-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.bento-currency-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border-ghost);
+  font-size: 0.75rem;
+}
+
+.bento-currency-row:last-child { border-bottom: none; }
+
+.bento-currency-pair {
+  font-weight: 500;
+  color: var(--ink-1);
+  letter-spacing: 0.04em;
+}
+
+.bento-currency-rate {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.bento-currency-change {
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.bento-currency-change--up {
+  color: var(--green);
+  background: var(--green-dim);
+}
+
+.bento-currency-change--down {
+  color: var(--red);
+  background: var(--red-dim);
+}
+
+/* ── News lead cell ──────────────────────────────────────── */
+.bento-news-lead {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-news-lead-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: grayscale(60%);
+  transition: opacity 0.6s ease, transform 0.8s var(--ease-expo);
+}
+
+.bento-news-lead:hover .bento-news-lead-img {
+  opacity: 0.28;
+  transform: scale(1.04);
+}
+
+.bento-news-lead-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--surface-1) 35%,
+    rgba(13,16,24,0.5) 75%,
+    transparent 100%
+  );
+}
+
+.bento-news-lead-body {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+.bento-news-lead-tag {
+  display: inline-block;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-border);
+  background: var(--cyan-dim);
+  padding: 2px 8px;
+  border-radius: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.bento-news-lead-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--ink-1);
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.bento-news-lead-desc {
+  font-size: 0.68rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 1rem;
+}
+
+.bento-news-lead-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.58rem;
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+}
+
+.bento-news-read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: none;
+  border: 1px solid var(--cyan-border);
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bento-news-read-btn:hover { background: var(--cyan-dim); }
+
+/* ── News side stack ─────────────────────────────────────── */
+.bento-news-stack {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bento-news-side-item {
+  flex: 1;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border-ghost);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-left: 2px solid transparent;
+}
+
+.bento-news-side-item:last-child { border-bottom: none; }
+
+.bento-news-side-item:hover {
+  background: var(--surface-2);
+  border-left-color: var(--cyan);
+}
+
+.bento-news-side-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--border-mid);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.bento-news-side-item:hover .bento-news-side-num { color: var(--cyan-dim); }
+
+.bento-news-side-title {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink-1);
+  margin: 0;
+}
+
+.bento-news-side-meta {
+  font-size: 0.55rem;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: auto;
+}
+
+/* ── Mini sparkline SVG ──────────────────────────────────── */
+.bento-sparkline {
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  opacity: 0.7;
+}
+
+/* ── Map placeholder cell ────────────────────────────────── */
+
+.bento-map-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      var(--border-ghost) 28px,
+      var(--border-ghost) 29px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 28px,
+      var(--border-ghost) 28px,
+      var(--border-ghost) 29px
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease;
+}
+
+.bento-map-placeholder:hover {
+  transform: scale(1.01);
+}
+
+/* PIN */
+
+.bento-map-pin {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+
+  background: var(--cyan);
+
+  box-shadow:
+    0 0 0 6px var(--cyan-dim),
+    0 0 0 14px rgba(0, 212, 255, 0.05);
+
+  animation: map-ping 2.5s ease infinite;
+}
+
+@keyframes map-ping {
+  0%, 100% {
+    box-shadow:
+      0 0 0 6px var(--cyan-dim),
+      0 0 0 14px rgba(0,212,255,0.05);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 12px rgba(0,212,255,0.08),
+      0 0 0 24px rgba(0,212,255,0.03);
+  }
+}
+
+/* COORDS */
+
+.bento-map-coords-overlay {
+  position: absolute;
+
+  bottom: 1rem;
+  left: 1rem;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+
+  color: var(--cyan);
+
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+
+
+/* ── Modal ───────────────────────────────────────────────── */
+.home-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(4, 5, 10, 0.90);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.home-modal-panel {
+  background: var(--surface-1);
+  border: 1px solid var(--border-mid);
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-dim) transparent;
+}
+
+.home-modal-panel::-webkit-scrollbar { width: 3px; }
+.home-modal-panel::-webkit-scrollbar-thumb { background: var(--border-dim); }
+
+.home-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border-dim);
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  z-index: 1;
+}
+
+.home-modal-bar-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.home-modal-close {
+  background: none;
+  border: 1px solid var(--border-dim);
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.28rem 0.7rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.home-modal-close:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.home-modal-img {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  opacity: 0.45;
+  filter: grayscale(40%);
+  display: block;
+}
+
+.home-modal-body {
+  padding: 2rem;
+}
+
+.home-modal-tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-border);
+  background: var(--cyan-dim);
+  padding: 2px 8px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.home-modal-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--ink-1);
+  margin: 0 0 1.25rem;
+}
+
+.home-modal-desc {
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  border-left: 2px solid var(--cyan-border);
+  padding-left: 1.1rem;
+  margin: 0 0 1.75rem;
+}
+
+.home-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-border);
+  padding: 0.5rem 1.1rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.home-modal-link:hover { background: var(--cyan-dim); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .home-bento {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .bento-cell--weather      { grid-column: span 6; grid-row: span 1; }
+  .bento-cell--clock-large  { grid-column: span 3; grid-row: span 1; }
+  .bento-cell--location     { grid-column: span 3; grid-row: span 1; }
+  .bento-cell--uv,
+  .bento-cell--wind,
+  .bento-cell--humidity,
+  .bento-cell--pressure     { grid-column: span 3; }
+  .bento-cell--currency     { grid-column: span 6; grid-row: span 1; }
+  .bento-cell--news-lead    { grid-column: span 6; grid-row: span 2; }
+  .bento-cell--news-side    { grid-column: span 6; grid-row: span 2; }
+  .bento-cell--map          { grid-column: span 6; grid-row: span 1; }
+}
+
+@media (max-width: 540px) {
+  .home-bento {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bento-cell--weather,
+  .bento-cell--clock-large,
+  .bento-cell--news-lead,
+  .bento-cell--news-side,
+  .bento-cell--currency,
+  .bento-cell--map          { grid-column: span 2; }
+
+  .bento-cell--location,
+  .bento-cell--uv,
+  .bento-cell--wind,
+  .bento-cell--humidity,
+  .bento-cell--pressure     { grid-column: span 1; }
+}

@@ -1,0 +1,159 @@
+/* =========================
+   CARD
+========================= */
+.calendar-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  color: white;
+}
+
+/* =========================
+   HEADER
+========================= */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #67e8f9;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+/* =========================
+   GRID
+========================= */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.calendar-weekday {
+  font-size: 12px;
+  text-align: center;
+  color: #6b7280;
+  padding: 6px 0;
+}
+
+.calendar-empty {
+  aspect-ratio: 1;
+}
+
+/* =========================
+   DAYS
+========================= */
+.calendar-day {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.calendar-day:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);
+}
+
+.calendar-day.today {
+  border: 2px solid #22d3ee;
+  background: rgba(34, 211, 238, 0.2);
+  color: #22d3ee;
+}
+
+.calendar-day.has-events {
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  background: rgba(34, 211, 238, 0.15);
+  color: #67e8f9;
+}
+
+/* =========================
+   EVENT DOTS
+========================= */
+.event-dots {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #22d3ee;
+}
+
+/* =========================
+   EVENTS LIST
+========================= */
+.calendar-events {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+}
+
+.calendar-events h4 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #d1d5db;
+}
+
+.no-events {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.event-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.event-meta {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+}

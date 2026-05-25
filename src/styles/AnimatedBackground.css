@@ -1,0 +1,303 @@
+/* ======================================================
+   ANIMATED BACKGROUND
+   ====================================================== */
+
+.animated-background {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: -10;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  background:
+    #050816;
+}
+
+/* ======================================================
+   GRADIENT LAYERS
+   ====================================================== */
+
+.animated-gradient-layer,
+.animated-overlay-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.animated-overlay-layer {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,0.02),
+      transparent 70%
+    );
+}
+
+/* ======================================================
+   BLOBS
+   ====================================================== */
+
+.animated-blob {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+}
+
+/* ======================================================
+   CYAN BLOB
+   ====================================================== */
+
+.animated-blob-cyan {
+  top: 0;
+  left: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 240, 255, 0.18) 0%,
+      transparent 70%
+    );
+}
+
+/* ======================================================
+   PURPLE BLOB
+   ====================================================== */
+
+.animated-blob-purple {
+  right: 0;
+  bottom: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(176, 0, 255, 0.18) 0%,
+      transparent 70%
+    );
+}
+
+/* ======================================================
+   PINK BLOB
+   ====================================================== */
+
+.animated-blob-pink {
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 0, 110, 0.12) 0%,
+      transparent 70%
+    );
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 768px) {
+
+  .animated-blob {
+    width: 280px;
+    height: 280px;
+
+    filter: blur(90px);
+  }
+
+}
+
+/* ======================================================
+   Animated Background - Premium Ambient System
+   ====================================================== */
+
+/* ======================================================
+   DESIGN TOKENS
+   ====================================================== */
+
+:root {
+  --bg-dark: #030712;
+
+  --orb-primary: rgba(168, 85, 247, 0.12);
+  --orb-secondary: rgba(6, 182, 212, 0.14);
+  --orb-tertiary: rgba(244, 63, 94, 0.08);
+
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --duration-a: 25s;
+  --duration-b: 30s;
+  --duration-c: 22s;
+}
+
+/* ======================================================
+   BASE CONTAINER
+   ====================================================== */
+
+.animated-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-dark);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ======================================================
+   MAIN ORBS
+   ====================================================== */
+
+/* Primary orb */
+.animated-background::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--orb-primary) 0%, transparent 70%);
+  filter: blur(80px);
+  mix-blend-mode: plus-lighter;
+
+  animation: orbMoveA var(--duration-a) var(--ease-smooth) infinite alternate;
+}
+
+/* Secondary orb */
+.animated-background::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 75vw;
+  height: 75vw;
+  max-width: 1000px;
+
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--orb-secondary) 0%, transparent 70%);
+  filter: blur(100px);
+  mix-blend-mode: plus-lighter;
+
+  animation: orbMoveB var(--duration-b) var(--ease-smooth) infinite alternate;
+}
+
+/* Tertiary orb */
+.animated-background-complement {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--orb-tertiary) 0%, transparent 65%);
+  filter: blur(90px);
+  mix-blend-mode: screen;
+
+  animation: orbMoveC var(--duration-c) ease-in-out infinite alternate;
+}
+
+/* ======================================================
+   TEXTURE OVERLAYS
+   ====================================================== */
+
+.animated-background-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.animated-background-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at center,
+    transparent 30%,
+    rgba(3, 7, 18, 0.6) 100%
+  );
+}
+
+/* ======================================================
+   ANIMATIONS
+   ====================================================== */
+
+@keyframes orbMoveA {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.85;
+  }
+  33% {
+    transform: translate(20vw, 15vh) scale(1.15);
+    opacity: 1;
+  }
+  66% {
+    transform: translate(-10vw, 30vh) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(5vw, -10vh) scale(1.05);
+    opacity: 0.85;
+  }
+}
+
+@keyframes orbMoveB {
+  0% {
+    transform: translate(0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate(-25vw, -20vh) scale(0.85);
+  }
+  100% {
+    transform: translate(10vw, -5vh) scale(1.2);
+  }
+}
+
+@keyframes orbMoveC {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2)
+      translate3d(-8vw, 12vh, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.95)
+      translate3d(12vw, -8vh, 0);
+  }
+}
+
+/* ======================================================
+   ACCESSIBILITY
+   ====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-background::before,
+  .animated-background::after,
+  .animated-background-complement {
+    animation: none !important;
+  }
+}

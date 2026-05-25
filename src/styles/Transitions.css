@@ -1,0 +1,16 @@
+
+/* ======================================================
+   TRANSITIONS & EFFECTS
+   ====================================================== */
+
+.transition-all {
+  @apply transition-all duration-300;
+}
+
+.transition-fast {
+  @apply transition-all duration-150;
+}
+
+.transition-slow {
+  @apply transition-all duration-500;
+}
